@@ -88,7 +88,7 @@ const RU_MAP = {
    * @param letters object - object with mapping braille on letters
    * @param str string - String to be decoded
    * @param ignoreForeigns bool - Ignore or include foreign chars. Default: include.
-   * @retruns string - Decoded string
+   * @returns string - Decoded string
   */
   function decode(letters, str, ignoreForeigns = false) {
     let modifier = null;
@@ -119,7 +119,7 @@ const RU_MAP = {
   /**
    * Decodes braille on Russian
    * @param str string - String to be decoded
-   * @retruns string - Decoded string
+   * @returns string - Decoded string
   */
   function decodeRU(str) {
     return decode(RU_MAP, str);
@@ -128,7 +128,7 @@ const RU_MAP = {
   /**
    * Decodes braille on English
    * @param str string - String to be decoded
-   * @retruns string - Decoded string
+   * @returns string - Decoded string
   */
   function decodeEN(str) {
     return decode(EN_MAP, str);
