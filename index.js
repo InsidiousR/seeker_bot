@@ -15,14 +15,9 @@ const command = new HearManager();
 vk.updates.on('message', command.middleware);
 
 function collectForwardMessages(context) {
-    var messages = [];
+    var messages = context.forwards.map(msgContext => msgContext.text);
     if (context.replyMessage) {
         messages.push(context.replyMessage.text);
-    }
-    if (context.forwards.length > 0) {
-        context.forwards.forEach(msgContext => {
-            messages.push(msgContext.text);
-        });
     }
 
     return messages;
