@@ -1,14 +1,11 @@
 const config = require('./config.json')
-const { VK, API } = require('vk-io');
+const { VK } = require('vk-io');
 const { HearManager } = require('@vk-io/hear');
 
 const braille = require('./commands/braille');
 
 const vk = new VK({
     token: config.token
-});
-const api = new API({
-	token: config.token
 });
 
 const command = new HearManager();
