@@ -29,6 +29,10 @@ function collectForwardMessages(context) {
 }
 
 command.hear('/русскийплиз', async (context) => {
+    if (context.peerType != "chat"){
+        return;
+    }
+    console.log(context);
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
         var translates = [];
@@ -39,6 +43,9 @@ command.hear('/русскийплиз', async (context) => {
     }
 })
 command.hear('/английскийплиз', async (context) => {
+    if (context.peerType != "chat"){
+        return;
+    }
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
         var translates = [];
