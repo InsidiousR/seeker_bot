@@ -33,10 +33,7 @@ command.hear('/русскийплиз', async (context) => {
     }
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
-        var translates = [];
-        messages.forEach(str => {
-            translates.push(braille.decodeRU(str));
-        });
+        var translates = messages.map(str => braille.decodeRU(str));
         context.send(wrapResponse("брайль->русский", translates.join("\n")));
     }
 })
@@ -46,10 +43,7 @@ command.hear('/английскийплиз', async (context) => {
     }
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
-        var translates = [];
-        messages.forEach(str => {
-            translates.push(braille.decodeEN(str));
-        });
+        var translates = messages.forEach(str => braille.decodeEN(str));
         context.send(wrapResponse("брайль->английский", translates.join("\n")));
     }
 })
