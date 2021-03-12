@@ -32,7 +32,7 @@ command.hear('/русскийплиз', async (context) => {
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
         var translates = [];
-        targetMsgs.forEach(str => {
+        messages.forEach(str => {
             translates.push(braille.decodeRU(str));
         });
         context.send(translates.join("\n"));
@@ -42,7 +42,7 @@ command.hear('/английскийплиз', async (context) => {
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
         var translates = [];
-        targetMsgs.forEach(str => {
+        messages.forEach(str => {
             translates.push(braille.decodeEN(str));
         });
         context.send(translates.join("\n"));
