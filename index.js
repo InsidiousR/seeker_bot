@@ -28,18 +28,21 @@ function collectForwardMessages(context) {
     return messages;
 }
 
+function wrapResponse(comment, str) {
+    return "Seeker Bot: " + comment + "\n" + str;
+}
+
 command.hear('/русскийплиз', async (context) => {
     if (context.peerType != "chat"){
         return;
     }
-    console.log(context);
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
         var translates = [];
         messages.forEach(str => {
             translates.push(braille.decodeRU(str));
         });
-        context.send(translates.join("\n"));
+        context.send(wrapResponse("брайль->русский", translates.join("\n")));
     }
 })
 command.hear('/английскийплиз', async (context) => {
@@ -52,7 +55,7 @@ command.hear('/английскийплиз', async (context) => {
         messages.forEach(str => {
             translates.push(braille.decodeEN(str));
         });
-        context.send(translates.join("\n"));
+        context.send(wrapResponse("брайль->английский", translates.join("\n")));
     }
 })
 
