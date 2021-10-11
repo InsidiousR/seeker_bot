@@ -30,7 +30,10 @@ command.hear('/русскийплиз', async (context) => {
     }
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
-        var translates = messages.map(str => braille.decodeRU(str));
+        var translates = [];
+        messages.forEach(str => {
+            translates.push(braille.decodeRU(str));
+        });
         context.send(wrapResponse("брайль->русский", translates.join("\n")));
     }
 })
@@ -40,8 +43,25 @@ command.hear('/английскийплиз', async (context) => {
     }
     var messages = collectForwardMessages(context);
     if (messages.length > 0) {
-        var translates = messages.forEach(str => braille.decodeEN(str));
+        var translates = [];
+        messages.forEach(str => {
+            translates.push(braille.decodeEN(str));
+        });
         context.send(wrapResponse("брайль->английский", translates.join("\n")));
+    }
+})
+command.hear(/^.*$/, async (context) => {
+    if (context.peerType != "chat"){
+        return;
+    }
+    var r = Math.random() * 100;
+    var is1Percent = r < 1;
+    var is001Percent = r < 0.1;
+    if (is001Percent){
+        context.send("АХЪАХЪАЪХАВПАЪЖХЭВЫПЪХВЫАЪПАВЪПХПЫВАЪХ");
+    } else
+    if (is1Percent){
+        context.send("ахахахаха");
     }
 })
 
