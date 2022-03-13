@@ -80,6 +80,6 @@ command.hear(/^.*$/, async (context) => {
     }
 })
 
-vk.updates.start()
+vk.updates.startPolling()
     .then(() => console.log('ok'))
     .catch(console.error);
