@@ -50,18 +50,33 @@ command.hear('/английскийплиз', async (context) => {
         context.send(wrapResponse("брайль->английский", translates.join("\n")));
     }
 })
+
+var baseSunndraChance = 1.0;
+var currentSunndraChance = 1.0;
+var baseSuperSunndraChance = 0.1;
+var currentSuperSunndraChance = 0.1;
+
 command.hear(/^.*$/, async (context) => {
     if (context.peerType != "chat"){
         return;
     }
     var r = Math.random() * 100;
-    var is1Percent = r < 1;
-    var is001Percent = r < 0.1;
-    if (is001Percent){
+    var checkChance = r < currentSunndraChance;
+    var checkSuper = r < currentSuperSunndraChance;
+    var resetChances = checkChance || checkSuper;
+    console.log("chances: " + currentSunndraChance + "/" + currentSuperSunndraChance + " vs " + r);
+    if (checkSuper){
         context.send("АХЪАХЪАЪХАВПАЪЖХЭВЫПЪХВЫАЪПАВЪПХПЫВАЪХ");
     } else
-    if (is1Percent){
+    if (checkChance){
         context.send("ахахахаха");
+    }
+    if (resetChances){
+        currentSunndraChance = baseSunndraChance;
+        currentSuperSunndraChance = baseSuperSunndraChance;
+    } else {
+        currentSunndraChance += 0.1;
+        currentSuperSunndraChance += 0.01;
     }
 })
 
